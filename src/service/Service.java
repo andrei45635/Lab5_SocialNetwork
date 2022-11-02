@@ -83,11 +83,25 @@ public class Service {
         }
     }
 
+    public void DFS(List<User> copy){
+        Stack<User> s = new Stack<>();
+        s.push(copy.remove(0));
+        while(!s.isEmpty()){
+            User user = s.pop();
+            for(User fr: user.getFriends()){
+                if(copy.contains(fr)){
+                    s.push(fr);
+                }
+            }
+            copy.remove(user);
+        }
+    }
     public int connectedCommunities() {
         int connected = 0;
         List<User> copy = new ArrayList<>(repo.getAllUsers());
         while(!copy.isEmpty()){
-            BFS(copy);
+            //BFS(copy);
+            DFS(copy);
             connected++;
         }
         return connected;
