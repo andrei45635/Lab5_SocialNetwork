@@ -3,7 +3,6 @@ package repo.memory;
 import domain.User;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import repo.Repository;
