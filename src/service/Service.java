@@ -69,26 +69,6 @@ public class Service {
         this.repo.deleteFriend(found1, found2);
     }
 
-    public List<int[]> IDs() {
-        List<int[]> res = new ArrayList<>();
-        Iterator var2 = this.repo.getAllUsers().iterator();
-
-        while (var2.hasNext()) {
-            User u = (User) var2.next();
-            List<User> friends = u.getFriends();
-            Iterator var5 = friends.iterator();
-
-            while (var5.hasNext()) {
-                User fr = (User) var5.next();
-                if (fr.getID() != u.getID()) {
-                    res.add(new int[]{u.getID(), fr.getID()});
-                }
-            }
-        }
-
-        return res;
-    }
-
     public void BFS(List<User> copy) {
         Queue<User> q = new LinkedList<>();
         q.add(copy.remove(0));
@@ -111,6 +91,27 @@ public class Service {
             connected++;
         }
         return connected;
+    }
+
+
+    public List<int[]> IDs() {
+        List<int[]> res = new ArrayList<>();
+        Iterator var2 = this.repo.getAllUsers().iterator();
+
+        while (var2.hasNext()) {
+            User u = (User) var2.next();
+            List<User> friends = u.getFriends();
+            Iterator var5 = friends.iterator();
+
+            while (var5.hasNext()) {
+                User fr = (User) var5.next();
+                if (fr.getID() != u.getID()) {
+                    res.add(new int[]{u.getID(), fr.getID()});
+                }
+            }
+        }
+
+        return res;
     }
 
     public void DFS_Util(boolean[] visited, int vertex) {
