@@ -7,6 +7,8 @@
     <list default="true" id="8ddce7c4-a5be-4e72-8a0b-a44f58368824" name="Changes" comment="Lab 5 MAP Social Network">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repo/memory/RepoMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/memory/RepoMemory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user_interface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_interface/UserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +67,8 @@
       <option name="presentableId" value="Default" />
       <updated>1667414549403</updated>
       <workItem from="1667414550959" duration="1696000" />
-      <workItem from="1667418648977" duration="323000" />
+      <workItem from="1667418648977" duration="607000" />
+      <workItem from="1667420596540" duration="733000" />
     </task>
     <task id="LOCAL-00001" summary="Lab 5 MAP Social Network">
       <created>1667415940418</created>
@@ -74,7 +77,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667415940418</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Lab 5 MAP Social Network">
+      <created>1667419253564</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1667419253564</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

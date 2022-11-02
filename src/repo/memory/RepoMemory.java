@@ -31,7 +31,7 @@ public class RepoMemory implements Repository {
                 }
             }
         }
-        users.removeIf(u -> u.getID() == id && u.getFriends().size() > 0);
+        users.removeIf(u -> u.getID() == id);
     }
 
     public void addUser(User user) {

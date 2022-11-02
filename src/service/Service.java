@@ -1,9 +1,9 @@
 package service;
 
 import domain.User;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+
+import java.util.*;
+
 import repo.memory.RepoMemory;
 import validators.Validator;
 
@@ -33,14 +33,14 @@ public class Service {
     public void addFriendService(int ID, int ID2) {
         User found1 = null;
         User found2 = null;
-        for(User u: repo.getAllUsers()){
-            if(u.getID() == ID){
+        for (User u : repo.getAllUsers()) {
+            if (u.getID() == ID) {
                 found1 = u;
             }
         }
 
-        for(User u: repo.getAllUsers()){
-            if(u.getID() == ID2){
+        for (User u : repo.getAllUsers()) {
+            if (u.getID() == ID2) {
                 found2 = u;
             }
         }
@@ -52,14 +52,14 @@ public class Service {
     public void deleteFriendService(int ID, int ID2) {
         User found1 = null;
         User found2 = null;
-        for(User u: repo.getAllUsers()){
-            if(u.getID() == ID){
+        for (User u : repo.getAllUsers()) {
+            if (u.getID() == ID) {
                 found1 = u;
             }
         }
 
-        for(User u: repo.getAllUsers()){
-            if(u.getID() == ID2){
+        for (User u : repo.getAllUsers()) {
+            if (u.getID() == ID2) {
                 found2 = u;
             }
         }
@@ -73,13 +73,13 @@ public class Service {
         List<int[]> res = new ArrayList<>();
         Iterator var2 = this.repo.getAllUsers().iterator();
 
-        while(var2.hasNext()) {
-            User u = (User)var2.next();
+        while (var2.hasNext()) {
+            User u = (User) var2.next();
             List<User> friends = u.getFriends();
             Iterator var5 = friends.iterator();
 
-            while(var5.hasNext()) {
-                User fr = (User)var5.next();
+            while (var5.hasNext()) {
+                User fr = (User) var5.next();
                 if (fr.getID() != u.getID()) {
                     res.add(new int[]{u.getID(), fr.getID()});
                 }
@@ -89,11 +89,35 @@ public class Service {
         return res;
     }
 
+    public void BFS(List<User> copy) {
+        Queue<User> q = new LinkedList<>();
+        q.add(copy.remove(0));
+        while (!q.isEmpty()) {
+            User user = q.remove();
+            for (User fr : user.getFriends()) {
+                if (copy.contains(fr)) {
+                    q.add(fr);
+                }
+            }
+            copy.remove(user);
+        }
+    }
+
+    public int connectedCommunities() {
+        int connected = 0;
+        List<User> copy = new ArrayList<>(repo.getAllUsers());
+        while(!copy.isEmpty()){
+            BFS(copy);
+            connected++;
+        }
+        return connected;
+    }
+
     public void DFS_Util(boolean[] visited, int vertex) {
         visited[vertex] = true;
         List<int[]> ids = this.IDs();
 
-        for(int k = 0; k < ids.get(vertex).length; ++k) {
+        for (int k = 0; k < ids.get(vertex).length; ++k) {
             if (!visited[k]) {
                 this.DFS_Util(visited, k);
             }
@@ -106,9 +130,9 @@ public class Service {
         List<int[]> ids = this.IDs();
         boolean[] visited = new boolean[ids.size()];
 
-        for(int v = 0; v < ids.size(); ++v) {
-            conexe++;
+        for (int v = 0; v < ids.size(); ++v) {
             this.DFS_Util(visited, v);
+            conexe++;
         }
 
         return conexe / 2;

@@ -17,7 +17,7 @@ public class UserInterface {
 
     public static int menu() {
         Scanner in = new Scanner(System.in);
-        System.out.println("1. Prints all the logged in users\n2. Prints all of the users who are logged in and their friendships\n3. Add user\n4. Delete user\n5. Delete friend\n6. Delete friend\n7. IDs\n8. Coonnected components\n0. Exit");
+        System.out.println("1. Prints all the logged in users\n2. Prints all of the users who are logged in and their friendships\n3. Add user\n4. Delete user\n5. Delete friend\n6. Delete friend\n7. IDs\n8. Coonnected components\n9. Connected communities V2\n0. Exit");
         int selection = in.nextInt();
         return selection;
     }
@@ -94,6 +94,11 @@ public class UserInterface {
         System.out.println(conexe);
     }
 
+    public void connectedCommunitiesUI(){
+        int connected = service.connectedCommunities();
+        System.out.println(connected);
+    }
+
     public void start() {
         label30:
         while(true) {
@@ -129,6 +134,9 @@ public class UserInterface {
                     break;
                 case 8:
                     this.cConex();
+                    break;
+                case 9:
+                    this.connectedCommunitiesUI();
                     break;
                 default:
                     System.out.println("Keys: 0 - 8\n");
