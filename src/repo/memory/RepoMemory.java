@@ -23,6 +23,14 @@ public class RepoMemory implements Repository {
     }
 
     public void deleteUser(int id) {
+        for(User u: users){
+            for(User fr: u.getFriends()){
+                if(fr.getID() == id){
+                    u.getFriends().remove(fr);
+                    break;
+                }
+            }
+        }
         users.removeIf(u -> u.getID() == id && u.getFriends().size() > 0);
     }
 
