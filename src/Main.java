@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 import user_interface.UserInterface;
 import domain.User;
 import repo.memory.RepoMemory;
