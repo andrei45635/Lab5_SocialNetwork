@@ -1,6 +1,9 @@
 package user_interface;
 
 import domain.User;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import service.Service;
 import validators.ValidatorException;
@@ -37,7 +40,7 @@ public class UserInterface {
             int age = in.nextInt();
             service.addUserService(id, firstName, lastName, email, passwd, age);
         } catch (ValidatorException var7) {
-            System.out.println(var7);
+            System.out.println(var7.getMessage());
         }
 
     }
@@ -75,14 +78,10 @@ public class UserInterface {
         service.deleteFriendService(id, id2);
     }
 
+
     public void connectedCommunitiesUI(){
         int connected = service.connectedCommunities();
         System.out.println(connected);
-    }
-
-    public void longPath(){
-        int longestPath = service.longestPath();
-        System.out.println(longestPath);
     }
 
     public void start() {
@@ -115,11 +114,8 @@ public class UserInterface {
                 case 6:
                     this.deleteFriend();
                     break;
-                case 7:
+                case 9:
                     this.connectedCommunitiesUI();
-                    break;
-                case 8:
-                    this.longPath();
                     break;
                 default:
                     System.out.println("Keys: 0 - 7\n");

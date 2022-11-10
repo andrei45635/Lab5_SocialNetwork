@@ -1,4 +1,3 @@
-1;Iacob;Andrei;iacob.andrei34@gmail.com;andreiiacob21;20
 2;Freeman;Gordon;gordon.freeman@blackmesa.com;alyxvance1;27
 3;Vance;Eli;eli.vance@blackmesa.com;alyxvance22;39
 4;Calhoun;Barry;barry.calhoun@blackmesa.com;beerownage1;25

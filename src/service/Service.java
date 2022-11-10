@@ -5,7 +5,7 @@ import domain.User;
 import java.util.*;
 
 import repo.file.UserFileRepo;
-import repo.memory.RepoMemoryUser;
+import repo.memory.AbstractMemoryRepo;
 import validators.Validator;
 
 /**
@@ -27,7 +27,7 @@ public class Service {
      * @return List of Users
      */
     public List<User> getAllService() {
-        return repo.getAllUsers();
+        return repo.getAll();
     }
 
     /**
@@ -43,7 +43,7 @@ public class Service {
     public void addUserService(int ID, String firstName, String lastName, String email, String passwd, int age) {
         User user = new User(ID, firstName, lastName, email, passwd, age);
         validator.validate(user);
-        repo.addUser(user);
+        repo.save(user);
     }
 
     /**
@@ -52,7 +52,7 @@ public class Service {
      * @param ID int
      */
     public void deleteUserService(int ID) {
-        repo.deleteUser(ID);
+        repo.delete(ID);
     }
 
     /**
@@ -64,20 +64,20 @@ public class Service {
     public void addFriendService(int ID, int ID2) {
         User found1 = null;
         User found2 = null;
-        for (User u : repo.getAllUsers()) {
+        for (User u : repo.getAll()) {
             if (u.getID() == ID) {
                 found1 = u;
             }
         }
 
-        for (User u : repo.getAllUsers()) {
+        for (User u : repo.getAll()) {
             if (u.getID() == ID2) {
                 found2 = u;
             }
         }
         assert found1 != null;
 
-        this.repo.addFriend(found1, found2);
+        //this.repo.addFriend(found1, found2);
     }
 
     /**
@@ -89,13 +89,13 @@ public class Service {
     public void deleteFriendService(int ID, int ID2) {
         User found1 = null;
         User found2 = null;
-        for (User u : repo.getAllUsers()) {
+        for (User u : repo.getAll()) {
             if (u.getID() == ID) {
                 found1 = u;
             }
         }
 
-        for (User u : repo.getAllUsers()) {
+        for (User u : repo.getAll()) {
             if (u.getID() == ID2) {
                 found2 = u;
             }
@@ -103,7 +103,7 @@ public class Service {
 
         assert found1 != null;
 
-        this.repo.deleteFriend(found1, found2);
+        //this.repo.deleteFriend(found1, found2);
     }
 
     /**
@@ -130,7 +130,7 @@ public class Service {
      */
     public int connectedCommunities() {
         int connected = 0;
-        List<User> copy = new ArrayList<>(repo.getAllUsers());
+        List<User> copy = new ArrayList<>(repo.getAll());
         while (!copy.isEmpty()) {
             DFS(copy);
             connected++;
@@ -145,66 +145,4 @@ public class Service {
         }
         return longestPath;
     }
-
-    public int longestPath (){
-        int longestPath = 0;
-        List<User> users = new ArrayList<>(repo.getAllUsers());
-        for(User u: users){
-            for(User fr: u.getFriends()){
-                if(users.contains(fr)){
-                    users.remove(fr);
-                }
-            }
-            longestPath = Math.max(longestPath, DFS_util(u));
-        }
-        return longestPath;
-    }
 }
-
-/*
-    public List<int[]> IDs() {
-        List<int[]> res = new ArrayList<>();
-        Iterator var2 = this.repo.getAllUsers().iterator();
-
-        while (var2.hasNext()) {
-            User u = (User) var2.next();
-            List<User> friends = u.getFriends();
-            Iterator var5 = friends.iterator();
-
-            while (var5.hasNext()) {
-                User fr = (User) var5.next();
-                if (fr.getID() != u.getID()) {
-                    res.add(new int[]{u.getID(), fr.getID()});
-                }
-            }
-        }
-
-        return res;
-    }
-
-    public void DFS_Util(boolean[] visited, int vertex) {
-        visited[vertex] = true;
-        List<int[]> ids = this.IDs();
-
-        for (int k = 0; k < ids.get(vertex).length; ++k) {
-            if (!visited[k]) {
-                this.DFS_Util(visited, k);
-            }
-        }
-
-    }
-
-    public int cConex() {
-        int conexe = 0;
-        List<int[]> ids = this.IDs();
-        boolean[] visited = new boolean[ids.size()];
-
-        for (int v = 0; v < ids.size(); ++v) {
-            this.DFS_Util(visited, v);
-            conexe++;
-        }
-
-        return conexe / 2;
-    }
-}
-*/
