@@ -1,17 +1,21 @@
+import repo.file.UserFileRepo;
 import user_interface.UserInterface;
 import domain.User;
-import repo.memory.RepoMemory;
 import service.Service;
 import validators.UserValidator;
 import validators.Validator;
+
+import java.io.File;
 
 public class Main {
     public Main() {
     }
 
     public static void main(String[] args) {
+        System.out.println(new File("users.txt").getAbsolutePath());
         Validator<User> validator = new UserValidator();
-        RepoMemory repo = new RepoMemory(validator);
+        //RepoMemoryUser repo = new RepoMemoryUser(validator);
+        UserFileRepo repo = new UserFileRepo("src\\users.txt", validator);
         Service service = new Service(validator, repo);
         UserInterface ui = new UserInterface(service);
         ui.start();

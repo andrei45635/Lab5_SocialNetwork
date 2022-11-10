@@ -4,7 +4,8 @@ import domain.User;
 
 import java.util.*;
 
-import repo.memory.RepoMemory;
+import repo.file.UserFileRepo;
+import repo.memory.RepoMemoryUser;
 import validators.Validator;
 
 /**
@@ -12,9 +13,10 @@ import validators.Validator;
  */
 public class Service {
     private final Validator<User> validator;
-    private RepoMemory repo;
+    //private RepoMemoryUser repo;
+    private UserFileRepo repo;
 
-    public Service(Validator<User> validator, RepoMemory repo) {
+    public Service(Validator<User> validator, UserFileRepo repo) {
         this.validator = validator;
         this.repo = repo;
     }
@@ -25,7 +27,7 @@ public class Service {
      * @return List of Users
      */
     public List<User> getAllService() {
-        return this.repo.getAllUsers();
+        return repo.getAllUsers();
     }
 
     /**

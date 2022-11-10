@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class User {
+public class User extends Entity<Long> {
     private int ID;
     private String firstName;
     private String lastName;

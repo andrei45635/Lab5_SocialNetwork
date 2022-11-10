@@ -11,17 +11,17 @@ import validators.Validator;
 /**
  * RepoMemory class
  */
-public class RepoMemory implements Repository {
+public class RepoMemoryUser extends AbstractMemoryRepo<User> {
     private final Validator<User> validator;
     private List<User> users;
 
-    public RepoMemory(Validator<User> validator) {
+    public RepoMemoryUser(Validator<User> validator) {
         this.validator = validator;
         this.users = new ArrayList<>();
     }
 
     /**
-     * Returns the list of logged in users
+     * Returns the list of logged-in users
      * @return List of Users
      */
     public List<User> getAllUsers() {
@@ -76,5 +76,29 @@ public class RepoMemory implements Repository {
     public void deleteFriend(User entity1, User entity2) {
         entity1.getFriends().remove(entity2);
         entity2.getFriends().remove(entity1);
+    }
+
+    @Override
+    public void add(User user) {
+        for (User u : users) {
+            if (u.getID() == user.getID()) {
+                throw new IllegalArgumentException("This user is already logged in\n");
+            }
+        }
+        validator.validate(user);
+        users.add(user);
+    }
+
+    @Override
+    public void delete(int id) {
+        for(User u: users){
+            for(User fr: u.getFriends()){
+                if(fr.getID() == id){
+                    u.getFriends().remove(fr);
+                    break;
+                }
+            }
+        }
+        users.removeIf(u -> u.getID() == id);
     }
 }
