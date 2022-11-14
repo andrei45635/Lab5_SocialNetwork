@@ -7,9 +7,7 @@
     <list default="true" id="8ddce7c4-a5be-4e72-8a0b-a44f58368824" name="Changes" comment="Lab 5 MAP Social Network">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repo/file/AbstractFileRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/file/AbstractFileRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repo/memory/AbstractMemoryRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/memory/AbstractMemoryRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user_interface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_interface/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/users.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +69,7 @@
       <workItem from="1667414550959" duration="1696000" />
       <workItem from="1667418648977" duration="607000" />
       <workItem from="1667420596540" duration="982000" />
-      <workItem from="1668431831840" duration="2005000" />
+      <workItem from="1668431831840" duration="3099000" />
     </task>
     <task id="LOCAL-00001" summary="Lab 5 MAP Social Network">
       <created>1667415940418</created>
@@ -115,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668092556965</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Lab 5 MAP Social Network">
+      <created>1668434016492</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668434016492</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
