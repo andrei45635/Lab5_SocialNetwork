@@ -40,6 +40,11 @@ public abstract class AbstractFileRepo<T> extends UserMemoryRepository {
         return e;
     }
 
+    @Override
+    public void delete(int ID){
+       super.delete(ID);
+    }
+
     private void writeToFile(User entity) {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))){
             bw.write(createEntityAsString(entity));

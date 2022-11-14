@@ -55,9 +55,9 @@ public class UserInterface {
                 deleted_user = u;
             }
         }
-        service.deleteUserService(id);
         assert deleted_user != null;
         System.out.println("Am sters userul " + deleted_user.toString());
+        service.deleteUserService(id);
     }
 
     public void addFriend() {
@@ -85,7 +85,6 @@ public class UserInterface {
     }
 
     public void start() {
-        label30:
         while(true) {
             int user_input = menu();
             switch (user_input) {

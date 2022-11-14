@@ -48,7 +48,6 @@ public class Service {
 
     /**
      * Deletes a user based on ID
-     *
      * @param ID int
      */
     public void deleteUserService(int ID) {
@@ -76,8 +75,9 @@ public class Service {
             }
         }
         assert found1 != null;
-
-        //this.repo.addFriend(found1, found2);
+        found1.getFriends().add(found2);
+        assert found2 != null;
+        found2.getFriends().add(found1);
     }
 
     /**
@@ -102,8 +102,9 @@ public class Service {
         }
 
         assert found1 != null;
-
-        //this.repo.deleteFriend(found1, found2);
+        found1.getFriends().remove(found2);
+        assert found2 != null;
+        found2.getFriends().remove(found1);
     }
 
     /**
