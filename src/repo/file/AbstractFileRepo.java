@@ -46,13 +46,14 @@ public abstract class AbstractFileRepo extends UserMemoryRepository {
             System.out.println(u);
         }
         for(User u: getAll()){
-//            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
-//                bw.write(createEntityAsString(u));
-//                bw.newLine();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            writeToFile(u);
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, false))) {
+                bw.write(createEntityAsString(u));
+                bw.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //writeToFile(u);
+            //3;Freeman;Gordon;gordon.freeman@blackmesa.com;alyxvance1;27
         }
     }
 

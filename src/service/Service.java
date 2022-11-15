@@ -19,9 +19,10 @@ public class Service {
     private UserFileRepo repo;
     private FriendshipMemoryRepo friendships;
 
-    public Service(Validator<User> validator, UserFileRepo repo) {
+    public Service(Validator<User> validator, UserFileRepo repo, FriendshipMemoryRepo friendships) {
         this.validator = validator;
         this.repo = repo;
+        this.friendships = friendships;
     }
 
     /**

@@ -1,3 +1,1 @@
-1;Vance;Eli;eli.vance@blackmesa.com;alyxvanceresonance;41
-2;Kleiner;Isaac;kleiner.isaac@blackmesa.com;lamarrzombie;40
 3;Freeman;Gordon;gordon.freeman@blackmesa.com;alyxvance1;27

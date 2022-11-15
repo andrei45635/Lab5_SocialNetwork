@@ -6,7 +6,7 @@ import validators.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserMemoryRepository extends AbstractMemoryRepo<User>{
+public class UserMemoryRepository extends AbstractMemoryRepo<User> {
     private List<User> users;
 
     public UserMemoryRepository(Validator<User> validator) {
@@ -18,8 +18,8 @@ public class UserMemoryRepository extends AbstractMemoryRepo<User>{
     @Override
     public void add(User entity) {
         validator.validate(entity);
-        for(User u: users){
-            if(u.getID() == entity.getID()){
+        for (User u : users) {
+            if (u.getID() == entity.getID()) {
                 throw new IllegalArgumentException("The specified user is already logged-in!\n");
             }
         }
@@ -28,6 +28,14 @@ public class UserMemoryRepository extends AbstractMemoryRepo<User>{
 
     @Override
     public void delete(int id) {
+        for (User u : users) {
+            for (User fr : u.getFriends()) {
+                if (fr.getID() == id) {
+                    u.getFriends().remove(fr);
+                    break;
+                }
+            }
+        }
         users.removeIf(u -> u.getID() == id);
     }
 
@@ -38,11 +46,11 @@ public class UserMemoryRepository extends AbstractMemoryRepo<User>{
 
     @Override
     public User save(User entity) {
-        if (entity==null)
+        if (entity == null)
             throw new IllegalArgumentException("entity must be not null");
         validator.validate(entity);
-        for(User u: users){
-            if(u.getID() == entity.getID()){
+        for (User u : users) {
+            if (u.getID() == entity.getID()) {
                 return entity;
             }
         }
@@ -52,13 +60,13 @@ public class UserMemoryRepository extends AbstractMemoryRepo<User>{
 
     @Override
     public User update(User entity) {
-        if(entity == null)
+        if (entity == null)
             throw new IllegalArgumentException("entity must be not null!");
         validator.validate(entity);
 
         users.add(entity);
 
-        if(users.get(Math.toIntExact(entity.getId())) != null) {
+        if (users.get(Math.toIntExact(entity.getId())) != null) {
             users.add(entity);
             return null;
         }

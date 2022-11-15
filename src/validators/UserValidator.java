@@ -9,6 +9,7 @@ public class UserValidator implements Validator<User> {
     public UserValidator() {
     }
 
+    @Override
     public void validate(User entity) throws ValidatorException {
         String errors = "";
         Pattern email_pattern = Pattern.compile("n*.com", Pattern.CASE_INSENSITIVE);
@@ -29,8 +30,8 @@ public class UserValidator implements Validator<User> {
         if (Objects.equals(entity.getPasswd(), "") || entity.getPasswd().length() <= 8 || Objects.equals(entity.getPasswd(), " ")) {
            errors += "Password can't be null, empty or have less than 8 characters\n";
         }
-        if (entity.getAge() < 13) {
-            errors += "You have to be over 13 to use this app.\n";
+        if (entity.getAge() < 13 || entity.getAge() > 99) {
+            errors += "You have to be over 13 and a human to use this app.\n";
         }
         if(errors.length() > 0){
             throw new ValidatorException(errors);

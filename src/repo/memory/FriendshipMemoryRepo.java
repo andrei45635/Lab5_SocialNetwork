@@ -1,6 +1,7 @@
 package repo.memory;
 
 import domain.Friendship;
+import domain.User;
 import validators.Validator;
 
 import java.util.ArrayList;
