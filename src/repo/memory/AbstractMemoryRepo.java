@@ -14,7 +14,7 @@ public abstract class AbstractMemoryRepo<T extends Entity<Long>> implements Repo
     protected Validator<T> validator;
 
     public AbstractMemoryRepo(Validator<T> validator) {
-        this.validator = (Validator<T>) new UserValidator();
+        this.validator = validator;
     }
 
     @Override
