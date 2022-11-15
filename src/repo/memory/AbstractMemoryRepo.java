@@ -27,12 +27,4 @@ public abstract class AbstractMemoryRepo<T extends Entity<Long>> implements Repo
     public abstract T update(T entity);
     @Override
     public abstract T save(T entity);
-//    public AbstractMemoryRepo(Validator<T> validator) {
-//        this.validator = validator;
-//    }
-//    public abstract void add(T entity);
-//    public abstract void delete(int id);
-//    public abstract List<T> getAll();
-//    public abstract T save(T entity);
-//    public abstract void update(T entity);
 }
