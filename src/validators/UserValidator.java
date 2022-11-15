@@ -2,6 +2,8 @@ package validators;
 
 import domain.User;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserValidator implements Validator<User> {
     public UserValidator() {
@@ -9,6 +11,9 @@ public class UserValidator implements Validator<User> {
 
     public void validate(User entity) throws ValidatorException {
         String errors = "";
+        Pattern email_pattern = Pattern.compile("n*.com", Pattern.CASE_INSENSITIVE);
+        Matcher email_matcher = email_pattern.matcher(entity.getEmail());
+        boolean matchFound = email_matcher.find();
         if (entity.getID() != entity.getID()) {
            errors += "ID has to be an integer\n";
         }
@@ -18,10 +23,10 @@ public class UserValidator implements Validator<User> {
         if (Objects.equals(entity.getLastName(), "")) {
             errors += "Last Name can't be null or empty\n";
         }
-        if (Objects.equals(entity.getEmail(), "")) {
-           errors += "Email can't be null or empty\n";
+        if (Objects.equals(entity.getEmail(), "") || !matchFound) {
+           errors += "Email can't be null, empty or anything ending in something else than *.com\n";
         }
-        if (Objects.equals(entity.getPasswd(), "") || entity.getPasswd().length() <= 8) {
+        if (Objects.equals(entity.getPasswd(), "") || entity.getPasswd().length() <= 8 || Objects.equals(entity.getPasswd(), " ")) {
            errors += "Password can't be null, empty or have less than 8 characters\n";
         }
         if (entity.getAge() < 13) {
