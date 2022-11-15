@@ -19,9 +19,9 @@ public interface Repository<ID, E extends Entity<ID>> {
 
     /**
      * Deletes a user based on ID
-     * @param ID int, the ID of the user
+     * @param entity entity, the user
      */
-    void delete(E entity);
+     boolean delete(E entity);
 
     /**
      * Adds a user and validates it

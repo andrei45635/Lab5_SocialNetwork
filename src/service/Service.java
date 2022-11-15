@@ -64,11 +64,7 @@ public class Service {
                 }
             }
         }
-        for(User u: repo.getAll()){
-            if(u.getID() == ID){
-                repo.delete(u);
-            }
-        }
+        repo.delete(new User(ID, "a", "b", "a.com", "abcdefgha",20));
     }
 
     /**

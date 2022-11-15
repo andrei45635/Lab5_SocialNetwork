@@ -22,8 +22,9 @@ public abstract class MemoryRepo<ID, T extends Entity<ID>> implements Repository
         return this.entities;
     }
     @Override
-    public void delete(T entity){
-        entities.remove(entity);
+    public boolean delete(T entity){
+        validator.validate(entity);
+        return entities.remove(entity);
     }
     @Override
     public T update(T entity){
@@ -45,7 +46,7 @@ public abstract class MemoryRepo<ID, T extends Entity<ID>> implements Repository
             throw new IllegalArgumentException("entity must be not null");
         validator.validate(entity);
         for (T u : entities) {
-            if (Objects.equals(u.getId(), entity.getId())) {
+            if (Objects.equals(u, entity)) {
                 return entity;
             }
         }

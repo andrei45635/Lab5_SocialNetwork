@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ddce7c4-a5be-4e72-8a0b-a44f58368824" name="Changes" comment="Lab 5 MAP Social Network">
+    <list default="true" id="8ddce7c4-a5be-4e72-8a0b-a44f58368824" name="Changes" comment="Lab 5 Social Network">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repo/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repo/file/AbstractFileRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/file/AbstractFileRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/users.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repo/file/UserFileRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/file/UserFileRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repo/memory/MemoryRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/memory/MemoryRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user_interface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_interface/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,19 +46,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Andrei/Desktop/Seminar_223",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/iacob/OneDrive/Desktop/Facultate/Semestrul 3/MAP-java/Seminar_223&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\iacob\OneDrive\Desktop\Lab5_SocialNetwork\src\text" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -69,7 +84,11 @@
       <workItem from="1667414550959" duration="1696000" />
       <workItem from="1667418648977" duration="607000" />
       <workItem from="1667420596540" duration="982000" />
-      <workItem from="1668431831840" duration="3099000" />
+      <workItem from="1667455575469" duration="4769000" />
+      <workItem from="1667460821353" duration="19000" />
+      <workItem from="1667570990097" duration="513000" />
+      <workItem from="1668060272593" duration="5706000" />
+      <workItem from="1668520065379" duration="3417000" />
     </task>
     <task id="LOCAL-00001" summary="Lab 5 MAP Social Network">
       <created>1667415940418</created>
@@ -107,20 +126,62 @@
       <updated>1667421510264</updated>
     </task>
     <task id="LOCAL-00006" summary="Lab 5 MAP Social Network">
-      <created>1668092556965</created>
+      <created>1667460343434</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1668092556965</updated>
+      <updated>1667460343434</updated>
     </task>
     <task id="LOCAL-00007" summary="Lab 5 MAP Social Network">
-      <created>1668434016492</created>
+      <created>1668508376886</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1668434016492</updated>
+      <updated>1668508376886</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Updated User Validator">
+      <created>1668508901823</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668508901823</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Lab 5 Social Network">
+      <created>1668509252037</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668509252037</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Lab 5 Social Network">
+      <created>1668509273476</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668509273476</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Lab 5 Social Network">
+      <created>1668509294413</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668509294413</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Lab 5 Social Network">
+      <created>1668510319063</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668510319063</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Lab 5 Social Network">
+      <created>1668513362850</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1668513362850</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +200,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lab 5 MAP Social Network" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lab 5 MAP Social Network" />
+    <MESSAGE value="Updated User Validator" />
+    <MESSAGE value="Lab 5 Social Network" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lab 5 Social Network" />
   </component>
 </project>

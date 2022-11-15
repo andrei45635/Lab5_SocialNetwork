@@ -3,35 +3,38 @@ package repo.file;
 import domain.User;
 import validators.Validator;
 
+import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserFileRepo extends AbstractFileRepo<Long, User> {
     public UserFileRepo(String fileName, Validator<User> validator) {
         super(fileName, validator);
+        loadData();
     }
 
     @Override
     public User save(User entity) {
         User e = super.save(entity);
         if (e == null) {
-            writeToFile(entity);
+            writeToFile();
         }
         return e;
     }
 
     @Override
-    public void delete(User user) {
-        super.delete(user);
-        for (User u : getAll()) {
-            System.out.println(u);
-            writeToFile(user);
+    public boolean delete(User user) {
+        boolean ret = super.delete(user);
+        if(ret){
+            writeToFile();
         }
+        return false;
     }
 
     @Override
     public User update(User user){
         if(super.update(user) != null){
-            writeToFile(user);
+            writeToFile();
         } else return null;
         return user;
     }

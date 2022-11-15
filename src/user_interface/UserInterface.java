@@ -9,10 +9,10 @@ import service.Service;
 import validators.ValidatorException;
 
 public class UserInterface {
-    private static Service service;
+    private Service service;
 
     public UserInterface(Service service) {
-        UserInterface.service = service;
+        this.service = service;
     }
 
     public static int menu() {
@@ -22,7 +22,7 @@ public class UserInterface {
         return selection;
     }
 
-    public static void addUser() {
+    public void addUser() {
         try {
             Scanner in = new Scanner(System.in);
             System.out.println("Input the ID: ");
