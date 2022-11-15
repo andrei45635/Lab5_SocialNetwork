@@ -49,4 +49,19 @@ public class UserMemoryRepository extends AbstractMemoryRepo<User>{
         users.add(entity);
         return null;
     }
+
+    @Override
+    public User update(User entity) {
+        if(entity == null)
+            throw new IllegalArgumentException("entity must be not null!");
+        validator.validate(entity);
+
+        users.add(entity);
+
+        if(users.get(Math.toIntExact(entity.getId())) != null) {
+            users.add(entity);
+            return null;
+        }
+        return entity;
+    }
 }

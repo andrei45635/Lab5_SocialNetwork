@@ -1,7 +1,6 @@
 package repo.file;
 
 import domain.User;
-import repo.memory.AbstractMemoryRepo;
 import repo.memory.UserMemoryRepository;
 import validators.Validator;
 
@@ -47,12 +46,13 @@ public abstract class AbstractFileRepo<T> extends UserMemoryRepository {
             System.out.println(u);
         }
         for(User u: getAll()){
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, false))) {
-                bw.write(createEntityAsString(u));
-                bw.newLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
+//                bw.write(createEntityAsString(u));
+//                bw.newLine();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+            writeToFile(u);
         }
     }
 

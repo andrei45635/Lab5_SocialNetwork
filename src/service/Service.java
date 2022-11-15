@@ -1,11 +1,13 @@
 package service;
 
+import domain.Friendship;
 import domain.User;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 import repo.file.UserFileRepo;
-import repo.memory.AbstractMemoryRepo;
+import repo.memory.FriendshipMemoryRepo;
 import validators.Validator;
 
 /**
@@ -15,6 +17,7 @@ public class Service {
     private final Validator<User> validator;
     //private RepoMemoryUser repo;
     private UserFileRepo repo;
+    private FriendshipMemoryRepo friendships;
 
     public Service(Validator<User> validator, UserFileRepo repo) {
         this.validator = validator;
@@ -78,6 +81,8 @@ public class Service {
         found1.getFriends().add(found2);
         assert found2 != null;
         found2.getFriends().add(found1);
+        friendships.add(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
+
     }
 
     /**
@@ -105,6 +110,7 @@ public class Service {
         found1.getFriends().remove(found2);
         assert found2 != null;
         found2.getFriends().remove(found1);
+        friendships.delete(found1.getID());
     }
 
     /**
@@ -137,13 +143,5 @@ public class Service {
             connected++;
         }
         return connected;
-    }
-
-    public int DFS_util(User u){
-        int longestPath = 0;
-        for(User fr: u.getFriends()){
-            longestPath = Math.max(longestPath, DFS_util(fr) + 1);
-        }
-        return longestPath;
     }
 }

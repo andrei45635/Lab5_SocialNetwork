@@ -1,7 +1,6 @@
 package repo.memory;
 
 import domain.Friendship;
-import validators.UserValidator;
 import validators.Validator;
 
 import java.util.ArrayList;
@@ -32,6 +31,22 @@ public class FriendshipMemoryRepo extends AbstractMemoryRepo<Friendship> {
 
     @Override
     public Friendship save(Friendship entity) {
-        return null;
+        friendships.add(entity);
+        return entity;
+    }
+
+    @Override
+    public Friendship update(Friendship entity) {
+        if(entity == null)
+            throw new IllegalArgumentException("entity must be not null!");
+        validator.validate(entity);
+
+        friendships.add(entity);
+
+        if(friendships.get(Math.toIntExact(entity.getId())) != null) {
+            friendships.add(entity);
+            return null;
+        }
+        return entity;
     }
 }
