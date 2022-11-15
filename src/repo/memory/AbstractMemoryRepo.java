@@ -1,6 +1,7 @@
 package repo.memory;
 
 import domain.Entity;
+import domain.Friendship;
 import domain.User;
 import repo.Repository;
 import validators.UserValidator;

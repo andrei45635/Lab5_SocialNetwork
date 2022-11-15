@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractFileRepo<T> extends UserMemoryRepository {
+public abstract class AbstractFileRepo extends UserMemoryRepository {
     private final String fileName;
 
     public AbstractFileRepo(String fileName, Validator<User> validator) {

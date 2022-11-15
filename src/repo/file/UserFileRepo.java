@@ -5,7 +5,7 @@ import validators.Validator;
 
 import java.util.List;
 
-public class UserFileRepo extends AbstractFileRepo<User>{
+public class UserFileRepo extends AbstractFileRepo{
     public UserFileRepo(String fileName, Validator<User> validator) {
         super(fileName, validator);
     }
