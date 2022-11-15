@@ -1,17 +1,18 @@
 package repo.file;
 
+import domain.Entity;
 import domain.User;
-import repo.memory.UserMemoryRepository;
+import repo.memory.MemoryRepo;
 import validators.Validator;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractFileRepo extends UserMemoryRepository {
+public abstract class AbstractFileRepo<ID, T extends Entity<ID>> extends MemoryRepo<ID, T> {
     private final String fileName;
 
-    public AbstractFileRepo(String fileName, Validator<User> validator) {
+    public AbstractFileRepo(String fileName, Validator<T> validator) {
         super(validator);
         this.fileName = fileName;
         loadData();
@@ -22,42 +23,16 @@ public abstract class AbstractFileRepo extends UserMemoryRepository {
             String line;
             while ((line = br.readLine()) != null) {
                 List<String> attrs = Arrays.asList(line.split(";"));
-                User entity = extractEntity(attrs);
+                T entity = extractEntity(attrs);
                 save(entity);
+                System.out.println(entity);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    public User save(User entity) {
-        User e = super.save(entity);
-        if (e == null) {
-            writeToFile(entity);
-        }
-        return e;
-    }
-
-    @Override
-    public void delete(int ID) {
-        super.delete(ID);
-        for(User u: getAll()){
-            System.out.println(u);
-        }
-        for(User u: getAll()){
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, false))) {
-                bw.write(createEntityAsString(u));
-                bw.newLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //writeToFile(u);
-            //3;Freeman;Gordon;gordon.freeman@blackmesa.com;alyxvance1;27
-        }
-    }
-
-    private void writeToFile(User entity) {
+    protected void writeToFile(T entity) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
             bw.write(createEntityAsString(entity));
             bw.newLine();
@@ -66,8 +41,8 @@ public abstract class AbstractFileRepo extends UserMemoryRepository {
         }
     }
 
-    public abstract User extractEntity(List<String> attrs);
+    public abstract T extractEntity(List<String> attrs);
 
-    protected abstract String createEntityAsString(User entity);
+    protected abstract String createEntityAsString(T entity);
 
 }

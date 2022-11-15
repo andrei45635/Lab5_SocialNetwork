@@ -21,14 +21,14 @@ public interface Repository<ID, E extends Entity<ID>> {
      * Deletes a user based on ID
      * @param ID int, the ID of the user
      */
-    void delete(int ID);
+    void delete(E entity);
 
     /**
      * Adds a user and validates it
      * @param var1 int, the ID of the user
      * @throws ValidatorException if the ID and age aren't int or if the firstName, lastName, email and passwd aren't strings
      */
-    void add(E var1);
+    //void add(E var1);
 
     E update (E entity);
     E save(E entity);

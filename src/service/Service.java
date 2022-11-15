@@ -48,6 +48,7 @@ public class Service {
         User user = new User(ID, firstName, lastName, email, passwd, age);
         validator.validate(user);
         repo.save(user);
+        System.out.println(user.getID());
     }
 
     /**
@@ -55,7 +56,19 @@ public class Service {
      * @param ID int
      */
     public void deleteUserService(int ID) {
-        repo.delete(ID);
+        for (User u : repo.getAll()) {
+            for (User fr : u.getFriends()) {
+                if (fr.getID() == ID) {
+                    u.getFriends().remove(fr);
+                    break;
+                }
+            }
+        }
+        for(User u: repo.getAll()){
+            if(u.getID() == ID){
+                repo.delete(u);
+            }
+        }
     }
 
     /**
@@ -82,7 +95,7 @@ public class Service {
         found1.getFriends().add(found2);
         assert found2 != null;
         found2.getFriends().add(found1);
-        friendships.add(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
+        friendships.save(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
 
     }
 
@@ -111,7 +124,7 @@ public class Service {
         found1.getFriends().remove(found2);
         assert found2 != null;
         found2.getFriends().remove(found1);
-        friendships.delete(found1.getID());
+        friendships.delete(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
     }
 
     /**

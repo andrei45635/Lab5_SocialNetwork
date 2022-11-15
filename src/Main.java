@@ -1,6 +1,5 @@
 import domain.Friendship;
 import repo.file.UserFileRepo;
-import repo.memory.AbstractMemoryRepo;
 import repo.memory.FriendshipMemoryRepo;
 import repo.memory.UserMemoryRepository;
 import user_interface.UserInterface;

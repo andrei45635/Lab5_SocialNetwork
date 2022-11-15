@@ -113,7 +113,7 @@ public class UserInterface {
                 case 6:
                     this.deleteFriend();
                     break;
-                case 9:
+                case 7:
                     this.connectedCommunitiesUI();
                     break;
                 default:
