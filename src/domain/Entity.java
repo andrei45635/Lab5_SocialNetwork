@@ -1,8 +1,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.Objects;
-
 public class Entity<ID> implements Serializable {
 
     private static final long serialVersionUID = 30011971L;

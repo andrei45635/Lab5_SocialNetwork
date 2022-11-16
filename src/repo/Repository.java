@@ -2,8 +2,6 @@
 package repo;
 
 import domain.Entity;
-import domain.User;
-import validators.ValidatorException;
 
 import java.util.List;
 
@@ -12,24 +10,29 @@ import java.util.List;
  */
 public interface Repository<ID, E extends Entity<ID>> {
     /**
-     * Returns the list of all users
-     * @return List of Users
+     * Returns the list of all Entities
+     * @return List of Entities
      */
     List<E> getAll();
 
     /**
-     * Deletes a user based on ID
-     * @param entity entity, the user
+     * Deletes an entity
+     * @param entity E
+     * @return true if the deletion was successful, false otherwise
      */
      boolean delete(E entity);
 
     /**
-     * Adds a user and validates it
-     * @param var1 int, the ID of the user
-     * @throws ValidatorException if the ID and age aren't int or if the firstName, lastName, email and passwd aren't strings
+     * Updates an entity
+     * @param entity E
+     * @return the entity if it doesn't exist
      */
-    //void add(E var1);
-
     E update (E entity);
+
+    /**
+     * Saves and validates an entity if it isn't already saved, throws Illegal Argument Exception otherwise
+     * @param entity E
+     * @return entity E if it is already logged in
+     */
     E save(E entity);
 }

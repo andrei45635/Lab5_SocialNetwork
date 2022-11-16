@@ -8,7 +8,6 @@ import java.util.*;
 
 import repo.file.FriendshipFileRepo;
 import repo.file.UserFileRepo;
-import repo.memory.FriendshipMemoryRepo;
 import validators.Validator;
 
 /**
@@ -25,6 +24,7 @@ public class Service {
         this.validator = validator;
         this.repo = repo;
         this.friendships = friendships;
+        addFriendstoUsers();
     }
 
     /**
@@ -64,6 +64,7 @@ public class Service {
 
     /**
      * Deletes a user based on ID
+     *
      * @param ID int
      */
     public void deleteUserService(int ID) {
@@ -75,7 +76,7 @@ public class Service {
                 }
             }
         }
-        repo.delete(new User(ID, "a", "b", "a.com", "abcdefgha",20));
+        repo.delete(new User(ID, "a", "b", "a.com", "abcdefgha", 20));
     }
 
     /**
@@ -98,11 +99,41 @@ public class Service {
                 found2 = u;
             }
         }
+
+        for (Friendship fr : friendships.getAll()) {
+            if (fr.getIdU1() == found1.getID() && fr.getIdU2() == found2.getID()) {
+                throw new IllegalArgumentException("These users are already friends!\n");
+            }
+        }
+
         assert found1 != null;
         found1.getFriends().add(found2);
         assert found2 != null;
         found2.getFriends().add(found1);
         friendships.save(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
+    }
+
+    /**
+     * Loads the data from the friends.csv file and adds them to the friends list of each user in the repo
+     */
+    public void addFriendstoUsers() {
+        for (User u : repo.getAll()) {
+            for (Friendship fr : friendships.getAll()) {
+                if (u.getID() == fr.getIdU1()) {
+                    for (User u2 : repo.getAll()) {
+                        if (u2.getID() == fr.getIdU2()) {
+                            u.getFriends().add(u2);
+                        }
+                    }
+                } else if (u.getID() == fr.getIdU2()) {
+                    for (User u2 : repo.getAll()) {
+                        if (u2.getID() == fr.getIdU1()) {
+                            u.getFriends().add(u2);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -135,6 +166,7 @@ public class Service {
 
     /**
      * DFS on a copy of the List of users
+     *
      * @param copy List of users
      */
     public void DFS(List<User> copy) {
@@ -153,6 +185,7 @@ public class Service {
 
     /**
      * Returns the number of connected components in the network
+     *
      * @return int, the number of connected components
      */
     public int connectedCommunities() {

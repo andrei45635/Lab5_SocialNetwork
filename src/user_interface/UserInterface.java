@@ -2,9 +2,6 @@ package user_interface;
 
 import domain.Friendship;
 import domain.User;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 import service.Service;
 import validators.ValidatorException;
@@ -57,7 +54,7 @@ public class UserInterface {
             }
         }
         assert deleted_user != null;
-        System.out.println("Am sters userul " + deleted_user.toString());
+        System.out.println("Am sters userul " + deleted_user);
         service.deleteUserService(id);
     }
 
@@ -123,7 +120,7 @@ public class UserInterface {
                     }
                     break;
                 default:
-                    System.out.println("Keys: 0 - 7\n");
+                    System.out.println("Keys: 0 - 8\n");
             }
         }
     }

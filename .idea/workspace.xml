@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ddce7c4-a5be-4e72-8a0b-a44f58368824" name="Changes" comment="Lab 5 MAP Social Network">
-      <change afterPath="$PROJECT_DIR$/src/friends.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repo/file/FriendshipFileRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repo/file/UserFileRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/file/UserFileRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/friends.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/friends.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repo/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/repo/Repository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Service.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user_interface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_interface/UserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/users.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668434016492</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Lab 5 MAP Social Network">
+      <created>1668605605787</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668605605787</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
