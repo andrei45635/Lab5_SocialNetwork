@@ -1,4 +1,5 @@
 import domain.Friendship;
+import repo.file.FriendshipFileRepo;
 import repo.file.UserFileRepo;
 import repo.memory.FriendshipMemoryRepo;
 import user_interface.UserInterface;
@@ -20,7 +21,8 @@ public class Main {
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
         //AbstractMemoryRepo<User> repo = new UserMemoryRepository(validator);
         UserFileRepo repo = new UserFileRepo("src\\users.csv", validator);
-        FriendshipMemoryRepo friendships = new FriendshipMemoryRepo(friendshipValidator);
+        //FriendshipMemoryRepo friendships = new FriendshipMemoryRepo(friendshipValidator);
+        FriendshipFileRepo friendships = new FriendshipFileRepo("src\\friends.csv",friendshipValidator);
         Service service = new Service(validator, repo, friendships);
         UserInterface ui = new UserInterface(service);
         ui.start();

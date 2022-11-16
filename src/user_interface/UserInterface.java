@@ -1,5 +1,6 @@
 package user_interface;
 
+import domain.Friendship;
 import domain.User;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -17,7 +18,7 @@ public class UserInterface {
 
     public static int menu() {
         Scanner in = new Scanner(System.in);
-        System.out.println("1. Prints all the logged in users\n2. Prints all of the users who are logged in and their friendships\n3. Add user\n4. Delete user\n5. Add friend\n6. Delete friend\n7. Connected communities V2\n0. Exit");
+        System.out.println("1. Prints all the logged in users\n2. Prints all of the users who are logged in and their friendships\n3. Add user\n4. Delete user\n5. Add friend\n6. Delete friend\n7. Connected communities V2\n8. Prints all friendships\n0. Exit");
         int selection = in.nextInt();
         return selection;
     }
@@ -115,6 +116,11 @@ public class UserInterface {
                     break;
                 case 7:
                     this.connectedCommunitiesUI();
+                    break;
+                case 8:
+                    for(Friendship fr: service.getAllFriendsService()){
+                        System.out.println(fr);
+                    }
                     break;
                 default:
                     System.out.println("Keys: 0 - 7\n");

@@ -6,6 +6,7 @@ import domain.User;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import repo.file.FriendshipFileRepo;
 import repo.file.UserFileRepo;
 import repo.memory.FriendshipMemoryRepo;
 import validators.Validator;
@@ -17,9 +18,10 @@ public class Service {
     private final Validator<User> validator;
     //private RepoMemoryUser repo;
     private UserFileRepo repo;
-    private FriendshipMemoryRepo friendships;
+    private FriendshipFileRepo friendships;
+    //private FriendshipMemoryRepo friendships;
 
-    public Service(Validator<User> validator, UserFileRepo repo, FriendshipMemoryRepo friendships) {
+    public Service(Validator<User> validator, UserFileRepo repo, FriendshipFileRepo friendships) {
         this.validator = validator;
         this.repo = repo;
         this.friendships = friendships;
@@ -32,6 +34,15 @@ public class Service {
      */
     public List<User> getAllService() {
         return repo.getAll();
+    }
+
+    /**
+     * Returns a list with all the friends
+     *
+     * @return List of Friends
+     */
+    public List<Friendship> getAllFriendsService() {
+        return friendships.getAll();
     }
 
     /**
@@ -92,7 +103,6 @@ public class Service {
         assert found2 != null;
         found2.getFriends().add(found1);
         friendships.save(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
-
     }
 
     /**
