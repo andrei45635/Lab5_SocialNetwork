@@ -115,6 +115,7 @@ public class Service {
 
     /**
      * Loads the data from the friends.csv file and adds them to the friends list of each user in the repo
+     * Please note that this is a WIP, this is NOT the final product
      */
     public void addFriendstoUsers() {
         for (User u : repo.getAll()) {
