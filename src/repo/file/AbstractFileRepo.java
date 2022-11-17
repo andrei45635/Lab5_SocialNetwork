@@ -3,6 +3,7 @@ package repo.file;
 import domain.Entity;
 import repo.memory.MemoryRepo;
 import validators.Validator;
+import validators.ValidatorException;
 
 import java.io.*;
 import java.util.Arrays;
@@ -15,27 +16,34 @@ public abstract class AbstractFileRepo<ID, T extends Entity<ID>> extends MemoryR
         super(validator);
         this.fileName = fileName;
     }
-    protected void loadData() {
+
+    protected void loadData() throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = br.readLine()) != null) {
                 List<String> attrs = Arrays.asList(line.split(";"));
-                T entity = extractEntity(attrs);
-                super.save(entity);
+                try {
+                    T entity = extractEntity(attrs);
+                    super.save(entity);
+                } catch (ValidatorException ve) {
+                    System.out.println(ve.getMessage());
+                    System.exit(1);
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e){
+            System.out.println("The file " + fileName + " can't be found\n");
+            System.exit(1);
         }
     }
 
-    protected void writeToFile() {
+    protected void writeToFile() throws IOException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, false))) {
-            for(T e: entities){
+            for (T e : entities) {
                 bw.write(createEntityAsString(e));
                 bw.newLine();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e){
+            throw new IOException("The file " + fileName + " can't be found\n");
         }
     }
 

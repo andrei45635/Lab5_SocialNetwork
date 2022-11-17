@@ -1,7 +1,6 @@
 import domain.Friendship;
 import repo.file.FriendshipFileRepo;
 import repo.file.UserFileRepo;
-import repo.memory.FriendshipMemoryRepo;
 import user_interface.UserInterface;
 import domain.User;
 import service.Service;
@@ -9,20 +8,30 @@ import validators.FriendshipValidator;
 import validators.UserValidator;
 import validators.Validator;
 
-import java.io.File;
+import java.io.IOException;
+
 
 public class Main {
     public Main() {
     }
 
-    public static void main(String[] args) {
-        System.out.println(new File("users.csv").getAbsolutePath());
+    public static void main(String[] args) throws IOException {
         Validator<User> validator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
-        //AbstractMemoryRepo<User> repo = new UserMemoryRepository(validator);
-        UserFileRepo repo = new UserFileRepo("src\\users.csv", validator);
-        //FriendshipMemoryRepo friendships = new FriendshipMemoryRepo(friendshipValidator);
-        FriendshipFileRepo friendships = new FriendshipFileRepo("src\\friends.csv",friendshipValidator);
+        String fileUsersName = "src\\users.csv";
+        String fileFriendsName = "src\\friends.csv";
+        UserFileRepo repo;
+        try {
+            repo = new UserFileRepo(fileUsersName, validator);
+        } catch (IOException e) {
+            throw new IOException(e);
+        }
+        FriendshipFileRepo friendships;
+        try {
+            friendships = new FriendshipFileRepo(fileFriendsName, friendshipValidator);
+        } catch (IOException e) {
+            throw new IOException(e);
+        }
         Service service = new Service(validator, repo, friendships);
         UserInterface ui = new UserInterface(service);
         ui.start();

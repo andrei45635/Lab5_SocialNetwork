@@ -12,7 +12,7 @@ public class UserValidator implements Validator<User> {
     @Override
     public void validate(User entity) throws ValidatorException {
         String errors = "";
-        Pattern email_pattern = Pattern.compile("n*.com", Pattern.CASE_INSENSITIVE);
+        Pattern email_pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", Pattern.CASE_INSENSITIVE);
         Matcher email_matcher = email_pattern.matcher(entity.getEmail());
         boolean matchFound = email_matcher.find();
         if (entity.getID() != entity.getID()) {
@@ -25,7 +25,7 @@ public class UserValidator implements Validator<User> {
             errors += "Last Name can't be null or empty\n";
         }
         if (Objects.equals(entity.getEmail(), "") || !matchFound) {
-           errors += "Email can't be null, empty or anything ending in something else than *.com\n";
+           errors += "Email can't be null, empty or anything ending in something else than *@.*\n";
         }
         if (Objects.equals(entity.getPasswd(), "") || entity.getPasswd().length() <= 8 || Objects.equals(entity.getPasswd(), " ")) {
            errors += "Password can't be null, empty or have less than 8 characters\n";

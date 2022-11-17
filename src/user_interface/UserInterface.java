@@ -2,6 +2,8 @@ package user_interface;
 
 import domain.Friendship;
 import domain.User;
+
+import java.io.IOException;
 import java.util.Scanner;
 import service.Service;
 import validators.ValidatorException;
@@ -36,7 +38,12 @@ public class UserInterface {
             String passwd = in.nextLine();
             System.out.println("Input your age: ");
             int age = in.nextInt();
-            service.addUserService(id, firstName, lastName, email, passwd, age);
+            try{
+                service.addUserService(id, firstName, lastName, email, passwd, age);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+
         } catch (ValidatorException var7) {
             System.out.println(var7.getMessage());
         }
@@ -55,7 +62,11 @@ public class UserInterface {
         }
         assert deleted_user != null;
         System.out.println("Am sters userul " + deleted_user);
-        service.deleteUserService(id);
+        try{
+            service.deleteUserService(id);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void addFriend() {
@@ -64,7 +75,11 @@ public class UserInterface {
         int id = in.nextInt();
         System.out.println("Introduceti id-ul prietenului: ");
         int id2 = in.nextInt();
-        service.addFriendService(id, id2);
+        try{
+            service.addFriendService(id, id2);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void deleteFriend() {
@@ -73,7 +88,11 @@ public class UserInterface {
         int id = in.nextInt();
         System.out.println("Introduceti id-ul prietenului: ");
         int id2 = in.nextInt();
-        service.deleteFriendService(id, id2);
+        try{
+            service.deleteFriendService(id, id2);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 

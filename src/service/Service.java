@@ -3,12 +3,14 @@ package service;
 import domain.Friendship;
 import domain.User;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
 import repo.file.FriendshipFileRepo;
 import repo.file.UserFileRepo;
 import validators.Validator;
+import validators.ValidatorException;
 
 /**
  * Service class
@@ -24,7 +26,11 @@ public class Service {
         this.validator = validator;
         this.repo = repo;
         this.friendships = friendships;
-        addFriendstoUsers();
+        try {
+            addFriendstoUsers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -55,11 +61,14 @@ public class Service {
      * @param passwd    String
      * @param age       int
      */
-    public void addUserService(int ID, String firstName, String lastName, String email, String passwd, int age) {
+    public void addUserService(int ID, String firstName, String lastName, String email, String passwd, int age) throws IOException {
         User user = new User(ID, firstName, lastName, email, passwd, age);
         validator.validate(user);
-        repo.save(user);
-        System.out.println(user.getID());
+        try{
+            repo.save(user);
+        } catch (ValidatorException ve){
+            System.out.println(ve.getMessage());
+        }
     }
 
     /**
@@ -67,11 +76,17 @@ public class Service {
      *
      * @param ID int
      */
-    public void deleteUserService(int ID) {
+    public void deleteUserService(int ID) throws IOException {
         for (User u : repo.getAll()) {
             for (User fr : u.getFriends()) {
                 if (fr.getID() == ID) {
                     u.getFriends().remove(fr);
+                    for (Friendship frs : friendships.getAll()) {
+                        if (u.getID() == frs.getIdU1() || u.getID() == frs.getIdU2()) {
+                            friendships.delete(frs);
+                        }
+                        break;
+                    }
                     break;
                 }
             }
@@ -85,7 +100,7 @@ public class Service {
      * @param ID  int, user 1
      * @param ID2 int, user 2
      */
-    public void addFriendService(int ID, int ID2) {
+    public void addFriendService(int ID, int ID2) throws IOException {
         User found1 = null;
         User found2 = null;
         for (User u : repo.getAll()) {
@@ -117,7 +132,7 @@ public class Service {
      * Loads the data from the friends.csv file and adds them to the friends list of each user in the repo
      * Please note that this is a WIP, this is NOT the final product
      */
-    public void addFriendstoUsers() {
+    public void addFriendstoUsers() throws IOException {
         for (User u : repo.getAll()) {
             for (Friendship fr : friendships.getAll()) {
                 if (u.getID() == fr.getIdU1()) {
@@ -143,7 +158,7 @@ public class Service {
      * @param ID   int, user 1
      * @param ID2, int user 2
      */
-    public void deleteFriendService(int ID, int ID2) {
+    public void deleteFriendService(int ID, int ID2) throws IOException{
         User found1 = null;
         User found2 = null;
         for (User u : repo.getAll()) {

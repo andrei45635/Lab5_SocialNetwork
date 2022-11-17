@@ -3,17 +3,22 @@ package repo.file;
 import domain.Friendship;
 import validators.Validator;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class FriendshipFileRepo extends AbstractFileRepo<Long, Friendship> {
-    public FriendshipFileRepo(String fileName, Validator<Friendship> validator) {
+    public FriendshipFileRepo(String fileName, Validator<Friendship> validator) throws IOException{
         super(fileName, validator);
-        loadData();
+        try{
+            loadData();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public Friendship save(Friendship entity) {
+    public Friendship save(Friendship entity) throws IOException{
         Friendship e = super.save(entity);
         if (e == null) {
             writeToFile();
@@ -22,7 +27,7 @@ public class FriendshipFileRepo extends AbstractFileRepo<Long, Friendship> {
     }
 
     @Override
-    public boolean delete(Friendship user) {
+    public boolean delete(Friendship user) throws IOException{
         boolean ret = super.delete(user);
         if (ret) {
             writeToFile();
@@ -31,7 +36,7 @@ public class FriendshipFileRepo extends AbstractFileRepo<Long, Friendship> {
     }
 
     @Override
-    public Friendship update(Friendship user) {
+    public Friendship update(Friendship user) throws IOException{
         if (super.update(user) != null) {
             writeToFile();
         } else return null;
