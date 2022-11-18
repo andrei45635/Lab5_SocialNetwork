@@ -40,7 +40,7 @@ public class FriendshipDBRepo implements Repository<Long, Friendship> {
              PreparedStatement statement = connection.prepareStatement(query)
         ) {
             statement.setInt(1, (int) entity.getIdU1());
-            statement.setInt(1, (int) entity.getIdU2());
+            statement.setInt(2, (int) entity.getIdU2());
             statement.executeUpdate();
 
         } catch (SQLException e) {

@@ -2,15 +2,11 @@ package service;
 
 import domain.Friendship;
 import domain.User;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
-
 import repo.database.FriendshipDBRepo;
 import repo.database.UserDBRepo;
-import repo.file.FriendshipFileRepo;
-import repo.file.UserFileRepo;
 import validators.Validator;
 import validators.ValidatorException;
 
@@ -31,7 +27,7 @@ public class Service {
         this.repo = repo;
         this.friendships = friendships;
         try {
-            addFriendstoUsers();
+            addFriendsDB();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,36 +116,27 @@ public class Service {
         }
 
         for (Friendship fr : friendships.getAll()) {
+            assert found1 != null;
+            assert found2 != null;
             if (fr.getIdU1() == found1.getID() && fr.getIdU2() == found2.getID()) {
                 throw new IllegalArgumentException("These users are already friends!\n");
             }
         }
 
         assert found1 != null;
-        found1.getFriends().add(found2);
         assert found2 != null;
+        found1.getFriends().add(found2);
         found2.getFriends().add(found1);
         friendships.save(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
     }
 
-    /**
-     * Loads the data from the friends.csv file and adds them to the friends list of each user in the repo
-     * Please note that this is a WIP, this is NOT the final product
-     */
-    public void addFriendstoUsers() throws IOException {
-        for (User u : repo.getAll()) {
-            for (Friendship fr : friendships.getAll()) {
-                if (u.getID() == fr.getIdU1()) {
-                    for (User u2 : repo.getAll()) {
-                        if (u2.getID() == fr.getIdU2()) {
-                            u.getFriends().add(u2);
-                        }
-                    }
-                } else if (u.getID() == fr.getIdU2()) {
-                    for (User u2 : repo.getAll()) {
-                        if (u2.getID() == fr.getIdU1()) {
-                            u.getFriends().add(u2);
-                        }
+    public void addFriendsDB() throws IOException{
+        for(User u: repo.getAll()){
+            for(User u2: repo.getAll()){
+                for(Friendship fr: friendships.getAll()){
+                    if((fr.getIdU1() == u.getID() && fr.getIdU2() == u2.getID()) || (fr.getIdU1() == u2.getID() && fr.getIdU2() == u.getID())){
+                        u.getFriends().add(u2);
+                        u2.getFriends().add(u);
                     }
                 }
             }
