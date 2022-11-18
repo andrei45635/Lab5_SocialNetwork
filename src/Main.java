@@ -1,4 +1,5 @@
 import domain.Friendship;
+import repo.database.UserDBRepo;
 import repo.file.FriendshipFileRepo;
 import repo.file.UserFileRepo;
 import user_interface.UserInterface;
@@ -18,14 +19,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Validator<User> validator = new UserValidator();
         Validator<Friendship> friendshipValidator = new FriendshipValidator();
-        String fileUsersName = "src\\users.csv";
+        UserDBRepo repo = new UserDBRepo();
+//        String fileUsersName = "src\\users.csv";
         String fileFriendsName = "src\\friends.csv";
-        UserFileRepo repo;
-        try {
-            repo = new UserFileRepo(fileUsersName, validator);
-        } catch (IOException e) {
-            throw new IOException(e);
-        }
+//        UserFileRepo repo;
+//        try {
+//            repo = new UserFileRepo(fileUsersName, validator);
+//        } catch (IOException e) {
+//            throw new IOException(e);
+//        }
         FriendshipFileRepo friendships;
         try {
             friendships = new FriendshipFileRepo(fileFriendsName, friendshipValidator);

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import repo.database.UserDBRepo;
 import repo.file.FriendshipFileRepo;
 import repo.file.UserFileRepo;
 import validators.Validator;
@@ -18,11 +19,12 @@ import validators.ValidatorException;
 public class Service {
     private final Validator<User> validator;
     //private RepoMemoryUser repo;
-    private UserFileRepo repo;
+    //private UserFileRepo repo;
+    private UserDBRepo repo;
     private FriendshipFileRepo friendships;
     //private FriendshipMemoryRepo friendships;
 
-    public Service(Validator<User> validator, UserFileRepo repo, FriendshipFileRepo friendships) {
+    public Service(Validator<User> validator, UserDBRepo repo, FriendshipFileRepo friendships) {
         this.validator = validator;
         this.repo = repo;
         this.friendships = friendships;
