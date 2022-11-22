@@ -26,11 +26,6 @@ public class Service {
         this.validator = validator;
         this.repo = repo;
         this.friendships = friendships;
-        try {
-            addFriendsDB();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -77,17 +72,10 @@ public class Service {
      * @param ID int
      */
     public void deleteUserService(int ID) throws IOException {
-        for (User u : repo.getAll()) {
-            for (User fr : u.getFriends()) {
-                if (fr.getID() == ID) {
-                    u.getFriends().remove(fr);
-                    for (Friendship frs : friendships.getAll()) {
-                        if (u.getID() == frs.getIdU1() || u.getID() == frs.getIdU2()) {
-                            friendships.delete(frs);
-                        }
-                        break;
-                    }
-                    break;
+        for(User u: repo.getAll()){
+            for(Friendship fr: friendships.getAll()){
+                if((fr.getIdU1() == u.getID() || fr.getIdU2() == u.getID()) && u.getID() == ID){
+                    friendships.delete(fr);
                 }
             }
         }
@@ -128,19 +116,6 @@ public class Service {
         found1.getFriends().add(found2);
         found2.getFriends().add(found1);
         friendships.save(new Friendship(found1.getID(), found2.getID(), LocalDateTime.now()));
-    }
-
-    public void addFriendsDB() throws IOException{
-        for(User u: repo.getAll()){
-            for(User u2: repo.getAll()){
-                for(Friendship fr: friendships.getAll()){
-                    if((fr.getIdU1() == u.getID() && fr.getIdU2() == u2.getID()) || (fr.getIdU1() == u2.getID() && fr.getIdU2() == u.getID())){
-                        u.getFriends().add(u2);
-                        u2.getFriends().add(u);
-                    }
-                }
-            }
-        }
     }
 
     /**

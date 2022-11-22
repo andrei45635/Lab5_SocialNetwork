@@ -46,7 +46,7 @@ public class FriendshipDBRepo implements Repository<Long, Friendship> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
+        return true;
     }
 
     @Override
