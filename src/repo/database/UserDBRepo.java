@@ -1,5 +1,6 @@
 package repo.database;
 
+import domain.Friendship;
 import domain.User;
 import repo.Repository;
 
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +96,57 @@ public class UserDBRepo implements Repository<Long, User> {
         }
         return entity;
     }
+
+    public void addFriends() {
+        for (User u : this.getAll()) {
+            for (Friendship fr : this.findFriends()) {
+                if (u.getID() == fr.getIdU1()) {
+                    User friend = findOne((int) fr.getIdU2());
+                    u.getFriends().add(friend);
+                } else if (u.getID() == fr.getIdU2()) {
+                    User friend = findOne((int) fr.getIdU1());
+                    friend.getFriends().add(u);
+                }
+            }
+        }
+    }
+
+    public User findOne(int id) {
+        String query = "SELECT * FROM users WHERE id = ?";
+        try (Connection connection = jdbcUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            int ID = resultSet.getInt("id");
+            return new User(ID, resultSet.getString("firstname"), resultSet.getString("lastname"), resultSet.getString("email"), resultSet.getString("passwd"), resultSet.getInt("age"));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Friendship> findFriends() {
+        List<Friendship> friendList = new ArrayList<>();
+
+        String query = "SELECT * FROM friendships";
+
+        try (Connection connection = jdbcUtils.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()
+        ) {
+            while (resultSet.next()) {
+                int u1ID = resultSet.getInt("idu1");
+                int u2ID = resultSet.getInt("idu2");
+                LocalDateTime date = resultSet.getTimestamp("date").toLocalDateTime();
+                Friendship friendship = new Friendship(u1ID, u2ID, date);
+                friendList.add(friendship);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return friendList;
+    }
+
 
     @Override
     public int size() {
