@@ -109,7 +109,7 @@ public class UserDBRepo implements Repository<Long, User> {
                     u.getFriends().add(friend);
                 } else if (u.getID() == fr.getIdU2()) {
                     User friend = findOne((int) fr.getIdU1());
-                    friend.getFriends().add(u);
+                    u.getFriends().add(friend);
                 }
             }
         }
