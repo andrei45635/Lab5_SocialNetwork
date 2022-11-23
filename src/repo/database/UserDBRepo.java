@@ -15,6 +15,10 @@ import java.util.List;
 public class UserDBRepo implements Repository<Long, User> {
     private final JDBCUtils jdbcUtils = new JDBCUtils();
 
+    public UserDBRepo() {
+        this.addFriends();
+    }
+
     @Override
     public List<User> getAll() {
         List<User> userList = new ArrayList<>();

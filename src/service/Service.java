@@ -26,7 +26,7 @@ public class Service {
         this.validator = validator;
         this.repo = repo;
         this.friendships = friendships;
-        repo.addFriends();
+        //repo.addFriends();
     }
 
     /**
